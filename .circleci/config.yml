@@ -44,5 +44,5 @@ jobs:
       # - run: ./vendor/bin/codecept build
       # - run: ./vendor/bin/codecept run
       - run: php -v 
-      - run: apache -v
+      - run: apache2 -v
       - run: ifconfig
