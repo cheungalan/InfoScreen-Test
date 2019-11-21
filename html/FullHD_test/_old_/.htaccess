@@ -1,0 +1,3 @@
+order deny,allow         
+deny from all            
+allow from 205.203.99.34 205.203.99.41

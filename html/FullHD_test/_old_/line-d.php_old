@@ -1,0 +1,479 @@
+<?php
+
+  // server side function call
+
+function calc() {
+	$link = "/var/www/wsja/html/resource/include/stock.txt";
+	$contents = "";  
+	$contents = file_get_contents($link);
+	$contents = preg_replace("/-/", "<span style='font-size: 40pt'>&#8595;</span>", $contents);
+	$contents = preg_replace("/\+/", "<span style='font-size: 40pt'>&#8593;</span>", $contents);
+	return $contents;
+}
+
+  include_once("agent.php");
+  $agent->init();
+
+?>
+
+<span id="pendule2" style="font-family:Arial; font-size:35px; color:#ffffff; position:absolute;left:1000;top:20;width:221;text-align:center"></span>
+<span id="pendule1" style="font-family:Arial; font-size:35px; color:#ffffff; position:absolute;left:1248;top:20;width:489;text-align:center"></span>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+setTimeout("clock()", 1000);
+
+function clock() 
+{
+	if (!document.layers && !document.all) return;
+
+	var digital = new Date();
+
+// Get Date
+	var theDay=digital.getDay();
+	var theMonth=digital.getMonth();
+	var dtext=new Array(30);
+	dtext[0]="Sun";
+	dtext[1]="Mon";
+	dtext[2]="Tue";
+	dtext[3]="Wed";
+	dtext[4]="Thu";
+	dtext[5]="Fri";
+	dtext[6]="Sat";
+	var mtext=new Array(30);
+	mtext[0]="January";
+	mtext[1]="February";
+	mtext[2]="March";
+	mtext[3]="April";
+	mtext[4]="May";
+	mtext[5]="June";
+	mtext[6]="July";
+	mtext[7]="August";
+	mtext[8]="September";
+	mtext[9]="October";
+	mtext[10]="November";
+	mtext[11]="December";
+	dispDate = dtext[theDay] + ", " + mtext[theMonth] + " " + digital.getDate() + ", " + digital.getFullYear();
+
+// Get Time
+	var hours = digital.getHours();
+	var minutes = digital.getMinutes();
+	var seconds = digital.getSeconds();
+	var amOrPm = "AM";
+	if (hours > 11) amOrPm = "PM";
+//	if (hours > 12) hours = hours - 12;
+//	if (hours == 0) hours = 12;
+	if (hours <= 9) hours = "0" + hours;
+	if (minutes <= 9) minutes = "0" + minutes;
+	if (seconds <= 9) seconds = "0" + seconds;
+	dispTime = hours + ":" + minutes + ":" + seconds;
+
+	if (document.layers) 
+	{
+		document.layers.pendule1.document.write(dispDate);
+		document.layers.pendule1.document.close();
+		document.layers.pendule2.document.write(dispTime);
+		document.layers.pendule2.document.close();
+	}
+	else if (document.all)
+	{
+		pendule1.innerHTML = dispDate;
+		pendule2.innerHTML = dispTime;
+	}
+
+	setTimeout("clock()", 1000);
+}
+//  End -->
+</script>
+
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	CURSOR: url(test.cur);
+
+}
+-->
+</style>
+<TABLE WIDTH=1920 BORDER=0 CELLPADDING=0 CELLSPACING=0 background="/FullHD/images/1920x1080_2.jpg">
+	<TR>
+		<TD width="22" HEIGHT="17"></TD>
+		<TD width="938" HEIGHT="17"></TD>
+		<TD width="242" HEIGHT="17"></TD>
+		<TD width="16" HEIGHT="17"></TD>
+		<TD width="22" HEIGHT="17"></TD>
+		<TD width="497" HEIGHT="17"></TD>
+		<TD width="23" HEIGHT="17"></TD>
+		<TD width="135" HEIGHT="17"></TD>
+		<TD width="25" HEIGHT="17"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="43"></TD>
+		<TD width="938" HEIGHT="43"></TD>
+		<TD width="258" HEIGHT="43" colspan="2"></TD>
+		<TD width="22" HEIGHT="43"></TD>
+		<TD width="497" HEIGHT="43"></TD>
+		<TD width="23" HEIGHT="43"></TD>
+		<TD width="135" HEIGHT="43"><iframe 
+			src="weather.php" 
+			scrolling="no" 
+			frameborder="0"
+			marginwidth="0" marginheight="0" width="135" height="37" name="I5"></iframe></TD>
+		<TD width="24" height="37"></TD>
+		<TD width="25" HEIGHT="43"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="91"></TD>
+		<TD width="938" HEIGHT="91"></TD>
+		<TD width="242" HEIGHT="91"></TD>
+		<TD width="16" HEIGHT="91"></TD>
+		<TD width="22" HEIGHT="91"></TD>
+		<TD width="497" HEIGHT="91"></TD>
+		<TD width="23" HEIGHT="91"></TD>
+		<TD width="135" HEIGHT="91"></TD>
+		<TD width="25" HEIGHT="91"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="580"></TD>
+		<TD width="1180" HEIGHT="580" colspan="2" valign="top"><div id="png" style="position:absolute;width:1180; height:580;margin:0px;overflow:hidden;padding:0px;border-style:solid; border-width:0px; border-color:#5C5C5C;"></div></TD>
+		<TD width="16" HEIGHT="580"></TD>
+		<TD width="22"HEIGHT="580"></TD>
+		<TD width="655" HEIGHT="580" colspan="3"><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="655" height="580">
+              <tr>
+                <td width="655" height="88" colspan="2" align="center"><b><font color="#005196" style="font-size: 50pt" face="Arial">HANG SENG INDEX</font></b></td>
+              </tr>
+              <tr>
+                <td width="218" height="82"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Index Value:</b></font></td>
+                <td width="437" height="82"><div id="i0_2" style="font-family: Arial"></div></td>
+              </tr>
+              <tr>
+                <td width="218" height="82"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Change:</b></font></td>
+                <td width="437" height="82"><div id="i0_3" style="font-family: Arial"></div></td>
+              </tr>
+              <tr>
+                <td width="218" height="82"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Prev Close:</b></font></td>
+                <td width="437" height="82"><div id="i0_4" style="font-family: Arial"></div></td>
+              </tr>
+              <tr>
+                <td width="218" height="82"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Open:</b></font></td>
+                <td width="437" height="82"><div id="i0_5" style="font-family: Arial"></div></td>
+              </tr>
+              <tr>
+                <td width="218" height="82"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Last Update:</b></font></td>
+                <td width="437" height="82"><div id="i0_6" style="font-family: Arial"></div></td>
+              </tr>
+              <tr>
+                <td width="655" height="82" colspan="2"><div id="market" style="text-align:center"></div></td>
+              </tr>
+            </table></TD>
+		<TD width="25" HEIGHT="580"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="27"></TD>
+		<TD width="938" HEIGHT="27"></TD>
+		<TD width="242" HEIGHT="27"></TD>
+		<TD width="16" HEIGHT="27"></TD>
+		<TD width="22" HEIGHT="27"></TD>
+		<TD width="497" HEIGHT="27"></TD>
+		<TD width="23" HEIGHT="27"></TD>
+		<TD width="135" HEIGHT="27"></TD>
+		<TD width="25" HEIGHT="27"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="299"></TD>
+		<TD width="1873" HEIGHT="299" colspan="7"><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="1873" height="299">
+  <tr>
+    <td width="62" height="50"></td>
+    <td width="140" height="50"><font color="#000000" face="Arial" style="font-size: 23pt"><b>Symbol</b></font></td>
+    <td width="216" height="50"></td>
+    <td width="131" height="50"><font face="Arial" style="font-size: 23pt" color="#000000"><b>Name</b></font></td>
+    <td width="397" height="50"></td>
+    <td width="173" height="50"><font face="Arial" style="font-size: 23pt" color="#000000"><b>Index Value</b></font></td>
+    <td width="132" height="50"></td>
+    <td width="168" height="50"><font face="Arial" style="font-size: 23pt" color="#000000"><b>Change</b></font></td>
+    <td width="48" height="50"></td>
+    <td width="168" height="50"><font face="Arial" style="font-size: 23pt" color="#000000"><b>Prev Close</b></font></td>
+    <td width="91" height="50"></td>
+    <td width="78" height="50"><font face="Arial" style="font-size: 23pt" color="#000000"><b>Open</b></font></td>
+    <td width="55" height="50"></td>
+  </tr>
+  <tr>
+    <td width="1873" colspan="13" height="15"></td>
+  </tr>
+  <tr>
+    <td width="1873" colspan="13" height="244" valign="top"><div id=scroller style='position:absolute;width:1873; height:244;margin:0px;overflow:hidden;padding:0px;border-style:solid; border-width:0px; border-color:#5C5C5C;'></div></td>
+  </tr>
+</table></TD>
+		<TD width="25" HEIGHT="299"></TD>
+	</TR>
+	<TR>
+		<TD width="22" HEIGHT="23"></TD>
+		<TD width="938" HEIGHT="23"></TD>
+		<TD width="242" HEIGHT="23"></TD>
+		<TD width="16" HEIGHT="23"></TD>
+		<TD width="22" HEIGHT="23"></TD>
+		<TD width="497" HEIGHT="23"></TD>
+		<TD width="23" HEIGHT="23"></TD>
+		<TD width="135" HEIGHT="23"></TD>
+		<TD width="25" HEIGHT="23"></TD>
+	</TR>
+</TABLE>
+
+<script language="JavaScript1.2" src="js/scroller_stock.js"></script>
+<script language="JavaScript1.2" src="js/scroller_png.js"></script>
+<script>
+var firststart = false;
+
+  function runcalc() {
+    agent.call('','calc','callback');
+    timer();
+  }
+  
+
+  function callback2() {
+   //var time = new Date();
+	//changediv2();
+	//document.getElementById('parent_chart').innerHTML = "<img src='../resource/include/chart.png?"+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds()+"' width='1180' height='580'>";
+   timer2();
+  }
+
+ 
+  function callback(str) {
+	string = null;
+    string=str.split("##");
+	index0=string[1].split(",");
+	index1=string[2].split(",");
+	index2=string[3].split(",");
+	index3=string[4].split(",");
+	index4=string[5].split(",");
+	index5=string[6].split(",");
+	index6=string[7].split(",");
+	index7=string[8].split(",");
+	index8=string[9].split(",");
+	index9=string[10].split(",");
+	index10=string[11].split(",");
+	index11=string[12].split(",");
+	index12=string[13].split(",");
+	index13=string[14].split(",");
+	index14=string[15].split(",");
+	index15=string[16].split(",");
+	index16=string[17].split(",");
+	index17=string[18].split(",");
+	index18=string[19].split(",");
+	index19=string[20].split(",");
+	index20=string[21].split(",");
+	index21=string[22].split(",");
+	index22=string[23].split(",");
+	index23=string[24].split(",");
+	index24=string[25].split(",");
+	index25=string[26].split(",");
+	index26=string[27].split(",");
+	index27=string[28].split(",");
+	index28=string[29].split(",");
+	index29=string[30].split(",");
+	index30=string[31].split(",");
+	index31=string[32].split(",");
+	index32=string[33].split(",");
+	index33=string[34].split(",");
+	index34=string[35].split(",");
+	index35=string[36].split(",");
+	index36=string[37].split(",");
+	index37=string[38].split(",");
+	index38=string[39].split(",");
+	index39=string[40].split(",");
+	index40=string[41].split(",");
+	index41=string[42].split(",");
+	index42=string[43].split(",");
+	index43=string[44].split(",");
+	index44=string[45];
+
+
+	changediv1();
+	index0[2] = index0[2].replace(/size='7'/, "face='Arial' style='font-size: 50pt'");
+	index0[3] = index0[3].replace(/size='7'/, "face='Arial' style='font-size: 50pt'");
+	index0[4] = index0[4].replace(/size='5'/, "face='Arial' size='7'");
+	index0[5] = index0[5].replace(/size='5'/, "face='Arial' size='7'");
+	index0[6] = index0[6].replace(/size='4'/, "face='Arial' size='6'");
+	index0[7] = index0[7].replace(/size='4'/, "face='Arial' size='6'");
+	index44 = index44.replace(/size='5'/, "face='Arial' style='font-size: 35pt'");
+
+	
+      document.getElementById('parent_i0_2').innerHTML = index0[2];
+      document.getElementById('parent_i0_3').innerHTML = index0[3];
+      document.getElementById('parent_i0_4').innerHTML = index0[4];
+      document.getElementById('parent_i0_5').innerHTML = index0[5];
+      document.getElementById('parent_i0_6').innerHTML = index0[6]+" "+index0[7];
+      document.getElementById('parent_market').innerHTML = index44;
+
+	content[0]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index1[5]+"</td></tr></table>";
+	content[1]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index2[5]+"</td></tr></table>";
+	content[2]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index3[5]+"</td></tr></table>";
+	content[3]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index4[5]+"</td></tr></table>";
+	content[4]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index5[5]+"</td></tr></table>";
+	content[5]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index6[5]+"</td></tr></table>";
+	content[6]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index7[5]+"</td></tr></table>";
+	content[7]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index8[5]+"</td></tr></table>";
+	content[8]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index9[5]+"</td></tr></table>";
+	content[9]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index10[5]+"</td></tr></table>";
+	content[10]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index11[5]+"</td></tr></table>";
+	content[11]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[5]+"</td></tr></table>";
+	content[12]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index13[5]+"</td></tr></table>";
+	content[13]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index14[5]+"</td></tr></table>";
+	content[14]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index15[5]+"</td></tr></table>";
+	content[15]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index16[5]+"</td></tr></table>";
+	content[16]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index17[5]+"</td></tr></table>";
+	content[17]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index18[5]+"</td></tr></table>";
+	content[18]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index19[5]+"</td></tr></table>";
+	content[19]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index20[5]+"</td></tr></table>";
+	content[20]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index21[5]+"</td></tr></table>";
+	content[21]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index22[5]+"</td></tr></table>";
+	content[22]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index23[5]+"</td></tr></table>";
+	content[23]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index24[5]+"</td></tr></table>";
+	content[24]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index25[5]+"</td></tr></table>";
+	content[25]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index26[5]+"</td></tr></table>";
+	content[26]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index27[5]+"</td></tr></table>";
+	content[27]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index28[5]+"</td></tr></table>";
+	content[28]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index29[5]+"</td></tr></table>";
+	content[29]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index30[5]+"</td></tr></table>";
+	content[30]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index31[5]+"</td></tr></table>";
+	content[31]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index32[5]+"</td></tr></table>";
+	content[32]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index33[5]+"</td></tr></table>";
+	content[33]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index34[5]+"</td></tr></table>";
+	content[34]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index35[5]+"</td></tr></table>";
+	content[35]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index36[5]+"</td></tr></table>";
+	content[36]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index37[5]+"</td></tr></table>";
+	content[37]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index38[5]+"</td></tr></table>";
+	content[38]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index39[5]+"</td></tr></table>";
+	content[39]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index40[5]+"</td></tr></table>";
+	content[40]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index41[5]+"</td></tr></table>";
+	content[41]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index42[5]+"</td></tr></table>";
+	content[42]="<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='1873'><tr><td width = '21'></td><td width='176' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[0]+"</td><td width='20' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'></td><td width='526' nowrap align='left' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[1]+"</td><td width='166' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[2]+"</td><td width='226' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[3]+"</td><td width='206' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[4]+"</td><td width='162' nowrap align='right' style='font-size: 40pt; font-family: Arial font-weight: bold'>"+index43[5]+"</td></tr></table>";
+
+
+	if(firststart == false){
+		action();
+		firststart = true;
+	}
+
+  }
+
+  function timer2() {
+    setTimeout("callback2()", 60000);
+  }
+
+
+  function timer() {
+    setTimeout("runcalc()", 60000);
+  }
+
+function createlocaldiv(){
+/*
+	var host_chart = document.getElementById('chart');
+	var parent_chart = document.createElement('div');
+	parent_chart.id = "parent_chart";
+	host_chart.appendChild(parent_chart);
+	parent_chart.innerHTML = "<p>ABC</p>";
+*/
+
+	var host_i0_2 = document.getElementById('i0_2');
+	var parent_i0_2 = document.createElement('div');
+	parent_i0_2.id = "parent_i0_2";
+	host_i0_2.appendChild(parent_i0_2);
+
+	var host_i0_3 = document.getElementById('i0_3');
+	var parent_i0_3 = document.createElement('div');
+	parent_i0_3.id = "parent_i0_3";
+	host_i0_3.appendChild(parent_i0_3);
+
+	var host_i0_4 = document.getElementById('i0_4');
+	var parent_i0_4 = document.createElement('div');
+	parent_i0_4.id = "parent_i0_4";
+	host_i0_4.appendChild(parent_i0_4);
+
+	var host_i0_5 = document.getElementById('i0_5');
+	var parent_i0_5 = document.createElement('div');
+	parent_i0_5.id = "parent_i0_5";
+	host_i0_5.appendChild(parent_i0_5);
+
+	var host_i0_6 = document.getElementById('i0_6');
+	var parent_i0_6 = document.createElement('div');
+	parent_i0_6.id = "parent_i0_6";
+	host_i0_6.appendChild(parent_i0_6);
+
+	var host_market = document.getElementById('market');
+	var parent_market = document.createElement('div');
+	parent_market.id = "parent_market";
+	host_market.appendChild(parent_market);
+}
+
+function changediv1(){
+	var host_i0_2 = document.getElementById('i0_2');
+	var parent_i0_2 = document.getElementById('parent_i0_2');
+	host_i0_2.removeChild(parent_i0_2);
+	var parent_i0_2 = document.createElement('div');
+	parent_i0_2.id = "parent_i0_2";
+	host_i0_2.appendChild(parent_i0_2);
+
+	var host_i0_3 = document.getElementById('i0_3');
+	var parent_i0_3 = document.getElementById('parent_i0_3');
+	host_i0_3.removeChild(parent_i0_3);
+	var parent_i0_3 = document.createElement('div');
+	parent_i0_3.id = "parent_i0_3";
+	host_i0_3.appendChild(parent_i0_3);
+
+	var host_i0_4 = document.getElementById('i0_4');
+	var parent_i0_4 = document.getElementById('parent_i0_4');
+	host_i0_4.removeChild(parent_i0_4);
+	var parent_i0_4 = document.createElement('div');
+	parent_i0_4.id = "parent_i0_4";
+	host_i0_4.appendChild(parent_i0_4);
+
+	var host_i0_5 = document.getElementById('i0_5');
+	var parent_i0_5 = document.getElementById('parent_i0_5');
+	host_i0_5.removeChild(parent_i0_5);
+	var parent_i0_5 = document.createElement('div');
+	parent_i0_5.id = "parent_i0_5";
+	host_i0_5.appendChild(parent_i0_5);
+
+	var host_i0_6 = document.getElementById('i0_6');
+	var parent_i0_6 = document.getElementById('parent_i0_6');
+	host_i0_6.removeChild(parent_i0_6);
+	var parent_i0_6 = document.createElement('div');
+	parent_i0_6.id = "parent_i0_6";
+	host_i0_6.appendChild(parent_i0_6);
+
+	var host_market = document.getElementById('market');
+	var parent_market = document.getElementById('parent_market');
+	host_market.removeChild(parent_market);
+	var parent_market = document.createElement('div');
+	parent_market.id = "parent_market";
+	host_market.appendChild(parent_market);
+
+}
+
+function changediv2(){
+	var host_chart = document.getElementById('chart');
+	var parent_chart = document.getElementById('parent_chart');
+	host_chart.removeChild(parent_chart);
+	parent_chart = document.createElement('div');
+	parent_chart.id = "parent_chart";
+	host_chart.appendChild(parent_chart);
+
+
+}
+
+//creatediv();
+createlocaldiv();
+//callback2();
+runcalc();
+createpngdiv();
+pngaction("true");
+showing='B';
+pngaction("false");
+
+</script>
+
