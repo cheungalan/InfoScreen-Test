@@ -34,6 +34,7 @@ jobs:
       - run: sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/
       - run: sudo docker-php-ext-install pdo pdo_mysql gd mbstring zip
       - run: sudo composer self-update
+      - run: sudo apt-get install apache2
 
       # prepare the database
       # - run: touch storage/testing.sqlite
