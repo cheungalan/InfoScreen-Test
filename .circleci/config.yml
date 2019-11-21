@@ -47,3 +47,4 @@ jobs:
       - run: php -v 
       - run: apache2 -v
       - run: ifconfig
+      - run: sudo apt list --installed
