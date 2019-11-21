@@ -22,8 +22,8 @@ jobs:
       - checkout
 
       - add_ssh_keys:
-        fingerprints:
-          - "5c:5e:46:3e:e7:3f:0f:ed:9b:c5:b1:11:d0:c4:9b:ae"      
+          fingerprints:
+            - "5c:5e:46:3e:e7:3f:0f:ed:9b:c5:b1:11:d0:c4:9b:ae"      
       
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
