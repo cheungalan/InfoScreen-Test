@@ -27,31 +27,13 @@ jobs:
       
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
-      - run: sudo apt install apache2
-
-      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#            # "composer.lock" can be used if it is committed to the repo
-#            # - v1-dependencies-{{ checksum "composer.json" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
-
-#      - run: composer install -n --prefer-dist
-
-#      - save_cache:
-#          key: v1-dependencies-{{ checksum "composer.json" }}
-#          paths:
-#            - ./vendor
-#      - restore_cache:
-#          keys:
-#            - node-v1-{{ checksum "package.json" }}
-#            - node-v1-
-#      - run: yarn install
-#      - save_cache:
-#          key: node-v1-{{ checksum "package.json" }}
-#          paths:
-#            - node_modules
+      
+      - run: sudo apt-get update -y
+      - run: sudo apt-get install -y libpng-dev libjpeg-dev zip unzip git
+      - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/
+      - run: sudo docker-php-ext-install pdo pdo_mysql gd mbstring zip
+      - run: sudo composer self-update
 
       # prepare the database
       # - run: touch storage/testing.sqlite
@@ -61,4 +43,6 @@ jobs:
       # - run: ./vendor/bin/phpunit
       # - run: ./vendor/bin/codecept build
       # - run: ./vendor/bin/codecept run
-      - run: sudo systemctl status apache2
+      - run: php -v 
+      - run: apache -v
+      - run: ifconfig
