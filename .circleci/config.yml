@@ -14,27 +14,27 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # Using the RAM variation mitigates I/O contention
       # for database intensive operations.
-      - image: circleci/mysql:5.7-ram
+#      - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
 
     steps:
       - checkout
 
-      - add_ssh_keys:
-          fingerprints:
-            - "5c:5e:46:3e:e7:3f:0f:ed:9b:c5:b1:11:d0:c4:9b:ae"      
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "5c:5e:46:3e:e7:3f:0f:ed:9b:c5:b1:11:d0:c4:9b:ae"      
       
-      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+#      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
+#      - run: sudo docker-php-ext-install zip
       
-      - run: sudo apt-get update -y
-      - run: sudo apt-get install -y libpng-dev libjpeg-dev zip unzip git
-      - run: sudo docker-php-ext-install zip
-      - run: sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/
-      - run: sudo docker-php-ext-install pdo pdo_mysql gd mbstring zip
-      - run: sudo composer self-update
-      - run: sudo apt-get install apache2
+#      - run: sudo apt-get update -y
+#      - run: sudo apt-get install -y libpng-dev libjpeg-dev zip unzip git
+#      - run: sudo docker-php-ext-install zip
+#      - run: sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/
+#      - run: sudo docker-php-ext-install pdo pdo_mysql gd mbstring zip
+#      - run: sudo composer self-update
+#      - run: sudo apt-get install apache2
 
       # prepare the database
       # - run: touch storage/testing.sqlite
@@ -45,6 +45,6 @@ jobs:
       # - run: ./vendor/bin/codecept build
       # - run: ./vendor/bin/codecept run
       - run: php -v 
-      - run: apache2 -v
+#     - run: apache2 -v
       - run: ifconfig
-      - run: sudo apt list --installed
+#      - run: sudo apt list --installed
