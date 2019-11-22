@@ -34,8 +34,8 @@ jobs:
           name: Test
           command: php -v
       - run:
-          name: Test2
-          command: ifconfig
+          name: Deply to staging
+          command: ssh wsja@10.32.10.127 'cd /var/www/test/html && git pull origin master'
 
 workflows:
   version: 2
